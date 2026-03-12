@@ -1,19 +1,61 @@
-package com.sineth.server.service;
-
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.sineth.server.dto.TeacherRequest;
 import com.sineth.server.dto.TeacherResponse;
 
 @Service
 public class AdminTeacherService {
   private final JdbcTemplate jdbcTemplate;
+  private final PasswordEncoder passwordEncoder;
 
-  public AdminTeacherService(JdbcTemplate jdbcTemplate) {
+  public AdminTeacherService(JdbcTemplate jdbcTemplate, PasswordEncoder passwordEncoder) {
     this.jdbcTemplate = jdbcTemplate;
+    this.passwordEncoder = passwordEncoder;
+  }
+
+  @Transactional
+  public void createTeacher(TeacherRequest request) {
+    // 1. Get Role ID for ROLE_Teacher
+    UUID roleId = jdbcTemplate.queryForObject(
+        "SELECT id FROM roles WHERE role_name = 'ROLE_Teacher'",
+        UUID.class
+    );
+
+    if (roleId == null) {
+      throw new RuntimeException("Role ROLE_Teacher not found");
+    }
+
+    // 2. Create User
+    UUID userId = UUID.randomUUID();
+    String hashedPassword = passwordEncoder.encode(request.getPassword());
+    
+    jdbcTemplate.update(
+        "INSERT INTO users (id, user_name, email, password, role_id, created_at) VALUES (?, ?, ?, ?, ?, ?)",
+        userId,
+        request.getUsername(),
+        request.getEmail(),
+        hashedPassword,
+        roleId,
+        LocalDate.now()
+    );
+
+    // 3. Create Teacher
+    jdbcTemplate.update(
+        "INSERT INTO teachers (id, f_name, l_name, gender, birthdate, user_id) VALUES (?, ?, ?, ?, ?, ?)",
+        UUID.randomUUID(),
+        request.getFirstName(),
+        request.getLastName(),
+        request.getGender(),
+        request.getBirthdate(),
+        userId
+    );
   }
 
   public List<TeacherResponse> getTeachers(int page, int size, String sortBy, String direction, String search) {

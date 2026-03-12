@@ -40,7 +40,29 @@ class AdminTeacherService {
         'total': data['totalTeachers'] ?? 0,
       };
     } catch (e) {
-      print('Error fetching teachers: $e');
+      print('Error in fetchTeachers: $e');
+      rethrow;
+    }
+  }
+
+  Future<void> createTeacher(Map<String, dynamic> teacherData) async {
+    try {
+      final url = Uri.parse('${AppConstants.baseUrl}/admin/teachers');
+      
+      final response = await _apiClient.post(
+        url,
+        jsonEncode(teacherData),
+      ).timeout(const Duration(seconds: 10));
+
+      print('Create Teacher API Response Status: ${response.statusCode}');
+      print('Create Teacher API Response Body: ${response.body}');
+
+      if (response.statusCode != 200) {
+        final errorData = jsonDecode(response.body);
+        throw Exception(errorData['error'] ?? 'Failed to create teacher');
+      }
+    } catch (e) {
+      print('Error creating teacher: $e');
       rethrow;
     }
   }

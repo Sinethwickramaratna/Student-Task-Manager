@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; // testing edit
 import '../../widgets/section_header.dart';
 import '../../widgets/teacher_card.dart';
 import '../../core/app_colors.dart';
@@ -210,6 +210,18 @@ class _AdminTeachersPageState extends State<AdminTeachersPage>
           SafeArea(
             child: Scaffold(
               backgroundColor: Colors.transparent,
+              floatingActionButton: FloatingActionButton.extended(
+                onPressed: _showAddTeacherDialog,
+                backgroundColor: AppColors.primaryNeon,
+                label: const Text(
+                  "Add Teacher",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                icon: const Icon(Icons.add_rounded, color: Colors.white),
+              ),
               body: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -733,6 +745,222 @@ class _AdminTeachersPageState extends State<AdminTeachersPage>
           ),
         ],
       ),
+    );
+  }
+
+  void _showAddTeacherDialog() {
+    final formKey = GlobalKey<FormState>();
+    String fName = '';
+    String lName = '';
+    String email = '';
+    String username = '';
+    String password = '';
+    String gender = 'Male';
+    DateTime birthdate = DateTime.now().subtract(const Duration(days: 365 * 25));
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setDialogState) {
+            return AlertDialog(
+              backgroundColor: AppColors.bgMedium,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: const BorderSide(color: AppColors.glassBorder),
+              ),
+              title: const Text(
+                "Add New Teacher",
+                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+              content: SizedBox(
+                width: 400,
+                child: Form(
+                  key: formKey,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _buildTextField(
+                          label: "First Name",
+                          icon: Icons.person_outline,
+                          onSaved: (val) => fName = val!,
+                        ),
+                        const SizedBox(height: 12),
+                        _buildTextField(
+                          label: "Last Name",
+                          icon: Icons.person_outline,
+                          onSaved: (val) => lName = val!,
+                        ),
+                        const SizedBox(height: 12),
+                        _buildTextField(
+                          label: "Email",
+                          icon: Icons.email_outlined,
+                          onSaved: (val) => email = val!,
+                          validator: (val) => val != null && val.contains('@') ? null : 'Invalid email',
+                        ),
+                        const SizedBox(height: 12),
+                        _buildTextField(
+                          label: "Username",
+                          icon: Icons.alternate_email,
+                          onSaved: (val) => username = val!,
+                        ),
+                        const SizedBox(height: 12),
+                        _buildTextField(
+                          label: "Password",
+                          icon: Icons.lock_outline,
+                          onSaved: (val) => password = val!,
+                          isPassword: true,
+                        ),
+                        const SizedBox(height: 12),
+                        DropdownButtonFormField<String>(
+                          value: gender,
+                          dropdownColor: AppColors.bgMedium,
+                          style: const TextStyle(color: Colors.white),
+                          decoration: _inputDecoration("Gender", Icons.wc_rounded),
+                          items: const [
+                            DropdownMenuItem(value: "Male", child: Text("Male")),
+                            DropdownMenuItem(value: "Female", child: Text("Female")),
+                          ],
+                          onChanged: (val) => setDialogState(() => gender = val!),
+                        ),
+                        const SizedBox(height: 12),
+                        InkWell(
+                          onTap: () async {
+                            final picked = await showDatePicker(
+                              context: context,
+                              initialDate: birthdate,
+                              firstDate: DateTime(1960),
+                              lastDate: DateTime.now(),
+                              builder: (context, child) {
+                                return Theme(
+                                  data: Theme.of(context).copyWith(
+                                    colorScheme: const ColorScheme.dark(
+                                      primary: AppColors.primaryNeon,
+                                      onPrimary: Colors.white,
+                                      surface: AppColors.bgMedium,
+                                      onSurface: Colors.white,
+                                    ),
+                                  ),
+                                  child: child!,
+                                );
+                              },
+                            );
+                            if (picked != null) {
+                              setDialogState(() => birthdate = picked);
+                            }
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                            decoration: BoxDecoration(
+                              color: AppColors.bgDark.withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: AppColors.glassBorder),
+                            ),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.cake_outlined, color: Colors.white54, size: 20),
+                                const SizedBox(width: 12),
+                                Text(
+                                  "Birthdate: ${birthdate.day}/${birthdate.month}/${birthdate.year}",
+                                  style: const TextStyle(color: Colors.white, fontSize: 15),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text("Cancel", style: TextStyle(color: Colors.white54)),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primaryNeon,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  ),
+                  onPressed: () async {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      Navigator.pop(context);
+                      
+                      setState(() => isLoading = true);
+                      try {
+                        await _service.createTeacher({
+                          'firstName': fName,
+                          'lastName': lName,
+                          'email': email,
+                          'username': username,
+                          'password': password,
+                          'gender': gender,
+                          'birthdate': birthdate.toIso8601String().split('T')[0],
+                        });
+                        if (mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text("Teacher added successfully!")),
+                          );
+                          loadTeachers();
+                        }
+                      } catch (e) {
+                        if (mounted) {
+                          setState(() {
+                            isLoading = false;
+                            errorMessage = 'Failed to add teacher: $e';
+                          });
+                        }
+                      }
+                    }
+                  },
+                  child: const Text("Add Teacher", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  InputDecoration _inputDecoration(String label, IconData icon) {
+    return InputDecoration(
+      labelText: label,
+      labelStyle: const TextStyle(color: Colors.white54),
+      prefixIcon: Icon(icon, color: Colors.white54, size: 20),
+      filled: true,
+      fillColor: AppColors.bgDark.withOpacity(0.5),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: AppColors.glassBorder),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: AppColors.glassBorder),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: AppColors.primaryNeon, width: 2),
+      ),
+    );
+  }
+
+  Widget _buildTextField({
+    required String label,
+    required IconData icon,
+    required void Function(String?) onSaved,
+    String? Function(String?)? validator,
+    bool isPassword = false,
+  }) {
+    return TextFormField(
+      style: const TextStyle(color: Colors.white),
+      decoration: _inputDecoration(label, icon),
+      obscureText: isPassword,
+      onSaved: onSaved,
+      validator: validator ?? (val) => val == null || val.isEmpty ? 'Required' : null,
     );
   }
 }

@@ -1,12 +1,16 @@
 package com.sineth.server.controller;
 
+import com.sineth.server.dto.TeacherRequest;
 import com.sineth.server.dto.TeacherResponse;
 import com.sineth.server.service.AdminTeacherService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,5 +39,16 @@ public class AdminTeacherController {
     response.put("totalTeachers", totalTeachers);
     response.put("currentPage", page);
     return response;
+  }
+
+  @PostMapping
+  @PreAuthorize("hasRole('Admin')")
+  public ResponseEntity<?> createTeacher(@RequestBody TeacherRequest request) {
+    try {
+      this.adminTeacherService.createTeacher(request);
+      return ResponseEntity.ok(Map.of("message", "Teacher created successfully"));
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+    }
   }
 }
