@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/user_model.dart';
+import '../core/app_colors.dart';
 
 class UserCard extends StatelessWidget {
   final UserModel user;
@@ -22,11 +23,12 @@ class UserCard extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(bottom: 12),
         decoration: BoxDecoration(
-          color: const Color.fromARGB(190, 255, 255, 255),
+          color: AppColors.bgMedium.withOpacity(0.7),
           borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: AppColors.glassBorder, width: 1),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withOpacity(0.2),
               blurRadius: 8,
               offset: const Offset(0, 4),
             )
@@ -62,7 +64,7 @@ class UserCard extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
-                      color: Colors.black87,
+                      color: Colors.white,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -76,15 +78,16 @@ class UserCard extends StatelessWidget {
                       vertical: 2,
                     ),
                     decoration: BoxDecoration(
-                      color: backgroundColor.withOpacity(0.6),
-                      borderRadius: BorderRadius.circular(4),
+                      color: Colors.black.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(6),
+                      border: Border.all(color: primaryColor.withOpacity(0.4), width: 1),
                     ),
                     child: Text(
                       'ID: ${user.id}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 10,
-                        fontWeight: FontWeight.w600,
-                        color: primaryColor,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -95,7 +98,7 @@ class UserCard extends StatelessWidget {
                     user.email,
                     style: const TextStyle(
                       fontSize: 12,
-                      color: Colors.grey,
+                      color: Colors.white70,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -108,7 +111,7 @@ class UserCard extends StatelessWidget {
                       const Icon(
                         Icons.access_time,
                         size: 13,
-                        color: Colors.grey,
+                        color: Colors.white70,
                       ),
                       const SizedBox(width: 4),
                       Expanded(
@@ -116,7 +119,7 @@ class UserCard extends StatelessWidget {
                           user.lastLogin ?? "Never",
                           style: const TextStyle(
                             fontSize: 11,
-                            color: Colors.grey,
+                            color: Colors.white,
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -137,19 +140,19 @@ class UserCard extends StatelessWidget {
                 children: [
                   Text(
                     'Joined',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 10,
-                      color: Colors.grey.shade500,
+                      color: Colors.white70,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     user.createdAt,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: primaryColor,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
                     ),
                     textAlign: TextAlign.right,
                   ),

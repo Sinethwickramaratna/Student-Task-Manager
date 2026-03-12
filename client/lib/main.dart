@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/loading_page.dart';
 import 'services/network_service.dart';
+import 'core/app_theme.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -73,6 +74,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Student Task Manager',
       debugShowCheckedModeBanner: false,
+      theme: AppTheme.darkTheme,
       home: LoadingPage(isFirstTime: widget.isFirstTime),
     );
   }

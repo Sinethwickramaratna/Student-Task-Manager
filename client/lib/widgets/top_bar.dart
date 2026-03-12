@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/app_colors.dart';
 
 class TopBar extends StatelessWidget {
   final VoidCallback onMenuPressed;
@@ -11,18 +12,11 @@ class TopBar extends StatelessWidget {
     return Container(
       height: 100,
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 37, 0, 52),
-        border: const Border(
-          bottom: BorderSide(color: Color.fromARGB(255, 97, 54, 122), width: 5),
+      decoration: const BoxDecoration(
+        color: AppColors.bgDark,
+        border: Border(
+          bottom: BorderSide(color: AppColors.glassBorder, width: 1),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: const Color.fromARGB(173, 0, 0, 0),
-            blurRadius: 14,
-            offset: const Offset(0, 5),
-          ),
-        ],
       ),
       child: Row(
         children: [

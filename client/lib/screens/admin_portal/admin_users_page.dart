@@ -3,6 +3,7 @@ import '../../models/user_model.dart';
 import '../../services/admin_user_service.dart';
 import '../../widgets/user_card.dart';
 import '../../widgets/section_header.dart';
+import '../../core/app_colors.dart';
 
 class AdminUsersPage extends StatefulWidget {
   const AdminUsersPage({super.key});
@@ -124,14 +125,8 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
 
     return Container(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Color.fromARGB(255, 245, 226, 255),
-            Color.fromARGB(255, 231, 171, 255)
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: AppColors.bgDark,
+        gradient: AppColors.mainGradient,
       ),
       child: Stack(
         children: [
@@ -148,8 +143,8 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
               child: Container(
                 width: 200,
                 height: 200,
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(42, 87, 3, 190),
+                decoration: const BoxDecoration(
+                  color: AppColors.glassWhite,
                   shape: BoxShape.circle,
                 ),
               ),
@@ -168,7 +163,7 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                 width: 220,
                 height: 220,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(128, 189, 131, 244),
+                  color: AppColors.primaryNeon.withOpacity(0.05),
                   shape: BoxShape.circle,
                 ),
               ),
@@ -206,7 +201,7 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(128, 85, 19, 146),
+                  color: AppColors.secondaryNeon.withOpacity(0.05),
                   shape: BoxShape.circle,
                 ),
               ),
@@ -231,7 +226,7 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                           borderRadius: BorderRadius.circular(14),
                           boxShadow: [
                             BoxShadow(
-                              color: const Color.fromARGB(255, 139, 37, 235).withOpacity(0.2),
+                              color: Colors.black.withOpacity(0.2),
                               blurRadius: 12,
                               offset: const Offset(0, 4),
                             )
@@ -248,11 +243,10 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                           },
                           decoration: InputDecoration(
                             hintText: 'Search by username or email...',
-                            prefixIcon: Padding(
-                              padding: const EdgeInsets.only(left: 14, right: 8),
+                            prefixIcon: const Padding(
+                              padding: EdgeInsets.only(left: 14, right: 8),
                               child: Icon(
                                 Icons.search_rounded,
-                                color: Colors.grey.shade600,
                                 size: 22,
                               ),
                             ),
@@ -260,9 +254,8 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                                 ? Padding(
                                     padding: const EdgeInsets.only(right: 8),
                                     child: IconButton(
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.clear_rounded,
-                                        color: Colors.grey.shade600,
                                         size: 20,
                                       ),
                                       onPressed: () {
@@ -277,26 +270,26 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                                   )
                                 : null,
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: AppColors.bgMedium.withOpacity(0.8),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(14),
-                              borderSide: const BorderSide(color: Color.fromARGB(255, 230, 220, 240), width: 1),
+                              borderSide: const BorderSide(color: AppColors.glassBorder, width: 1),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(14),
-                              borderSide: const BorderSide(color: Color.fromARGB(255, 230, 220, 240), width: 1),
+                              borderSide: const BorderSide(color: AppColors.glassBorder, width: 1),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(14),
                               borderSide: const BorderSide(
-                                color: Color.fromARGB(255, 139, 37, 235),
+                                color: AppColors.primaryNeon,
                                 width: 2,
                               ),
                             ),
                             contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 16),
-                            hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 14),
+                            hintStyle: const TextStyle(color: Colors.white54, fontSize: 14),
                           ),
-                          style: const TextStyle(fontSize: 15, color: Colors.black87),
+                          style: const TextStyle(fontSize: 15, color: Colors.white),
                         ),
                       ),
                     ),
@@ -308,24 +301,17 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                           final isCompact = constraints.maxWidth < 560;
                           return Container(
                             decoration: BoxDecoration(
-                              gradient: const LinearGradient(
-                                colors: [
-                                  Color.fromARGB(255, 255, 252, 255),
-                                  Color.fromARGB(255, 246, 238, 255),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
+                              color: AppColors.bgMedium.withOpacity(0.8),
                               borderRadius: BorderRadius.circular(16),
                               boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(255, 139, 37, 235).withOpacity(0.2),
+                                const BoxShadow(
+                                  color: Colors.black26,
                                   blurRadius: 14,
-                                  offset: const Offset(0, 8),
+                                  offset: Offset(0, 8),
                                 ),
                               ],
                               border: Border.all(
-                                color: const Color.fromARGB(255, 230, 220, 240),
+                                color: AppColors.glassBorder,
                                 width: 1,
                               ),
                             ),
@@ -343,7 +329,7 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                                   children: const [
                                     Icon(
                                       Icons.tune_rounded,
-                                      color: Color.fromARGB(255, 139, 37, 235),
+                                      color: AppColors.primaryNeon,
                                       size: 18,
                                     ),
                                     SizedBox(width: 8),
@@ -352,7 +338,7 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                                       style: TextStyle(
                                         fontWeight: FontWeight.w700,
                                         fontSize: 15,
-                                        color: Color.fromARGB(255, 82, 26, 138),
+                                        color: Colors.white,
                                       ),
                                     ),
                                   ],
@@ -361,50 +347,23 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                                   width: isCompact ? constraints.maxWidth : 220,
                                   child: DropdownButtonFormField<String>(
                                     value: sortBy,
+                                    dropdownColor: AppColors.bgMedium,
+                                    style: const TextStyle(color: Colors.white),
                                     decoration: InputDecoration(
                                       labelText: "Field",
                                       prefixIcon: const Icon(Icons.sort_rounded, size: 18),
                                       filled: true,
-                                      fillColor: Colors.white,
+                                      fillColor: AppColors.bgDark.withOpacity(0.5),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(12),
-                                        borderSide: const BorderSide(
-                                          color: Color.fromARGB(255, 230, 220, 240),
-                                          width: 1,
-                                        ),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                        borderSide: const BorderSide(
-                                          color: Color.fromARGB(255, 230, 220, 240),
-                                          width: 1,
-                                        ),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                        borderSide: const BorderSide(
-                                          color: Color.fromARGB(255, 139, 37, 235),
-                                          width: 2,
-                                        ),
+                                        borderSide: const BorderSide(color: AppColors.glassBorder),
                                       ),
                                     ),
                                     items: const [
-                                      DropdownMenuItem(
-                                        value: "username",
-                                        child: Text("Username"),
-                                      ),
-                                      DropdownMenuItem(
-                                        value: "email",
-                                        child: Text("Email"),
-                                      ),
-                                      DropdownMenuItem(
-                                        value: "last_login",
-                                        child: Text("Last Login"),
-                                      ),
-                                      DropdownMenuItem(
-                                        value: "created_at",
-                                        child: Text("Created Time"),
-                                      ),
+                                      DropdownMenuItem(value: "username", child: Text("Username")),
+                                      DropdownMenuItem(value: "email", child: Text("Email")),
+                                      DropdownMenuItem(value: "last_login", child: Text("Last Login")),
+                                      DropdownMenuItem(value: "created_at", child: Text("Created Time")),
                                     ],
                                     onChanged: (value) {
                                       setState(() {
@@ -419,58 +378,24 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                                   width: isCompact ? constraints.maxWidth : 200,
                                   child: DropdownButtonFormField<String>(
                                     value: direction,
+                                    dropdownColor: AppColors.bgMedium,
+                                    style: const TextStyle(color: Colors.white),
                                     decoration: InputDecoration(
                                       labelText: "Order",
-                                      prefixIcon: AnimatedSwitcher(
-                                        duration: const Duration(milliseconds: 200),
-                                        transitionBuilder: (child, animation) => ScaleTransition(
-                                          scale: animation,
-                                          child: FadeTransition(
-                                            opacity: animation,
-                                            child: child,
-                                          ),
-                                        ),
-                                        child: Icon(
-                                          direction == "asc"
-                                              ? Icons.trending_up_rounded
-                                              : Icons.trending_down_rounded,
-                                          key: ValueKey<String>(direction),
-                                          size: 18,
-                                        ),
+                                      prefixIcon: Icon(
+                                        direction == "asc" ? Icons.trending_up_rounded : Icons.trending_down_rounded,
+                                        size: 18,
                                       ),
                                       filled: true,
-                                      fillColor: Colors.white,
+                                      fillColor: AppColors.bgDark.withOpacity(0.5),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(12),
-                                        borderSide: const BorderSide(
-                                          color: Color.fromARGB(255, 230, 220, 240),
-                                          width: 1,
-                                        ),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                        borderSide: const BorderSide(
-                                          color: Color.fromARGB(255, 230, 220, 240),
-                                          width: 1,
-                                        ),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                        borderSide: const BorderSide(
-                                          color: Color.fromARGB(255, 139, 37, 235),
-                                          width: 2,
-                                        ),
+                                        borderSide: const BorderSide(color: AppColors.glassBorder),
                                       ),
                                     ),
                                     items: const [
-                                      DropdownMenuItem(
-                                        value: "asc",
-                                        child: Text("Ascending"),
-                                      ),
-                                      DropdownMenuItem(
-                                        value: "desc",
-                                        child: Text("Descending"),
-                                      ),
+                                      DropdownMenuItem(value: "asc", child: Text("Ascending")),
+                                      DropdownMenuItem(value: "desc", child: Text("Descending")),
                                     ],
                                     onChanged: (value) {
                                       setState(() {
@@ -494,17 +419,34 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.red.shade100,
-                            borderRadius: BorderRadius.circular(8),
+                            color: const Color(0xFF2D1B1B).withOpacity(0.85),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: const Color(0xFFFF5555).withOpacity(0.5), width: 1.5),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.3),
+                                blurRadius: 10,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
                           ),
                           padding: const EdgeInsets.all(12),
                           child: Row(
                             children: [
-                              const Icon(Icons.error, color: Colors.red),
-                              const SizedBox(width: 10),
-                              Expanded(child: Text(errorMessage!)),
+                              const Icon(Icons.error_outline_rounded, color: Color(0xFFFF5555), size: 22),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Text(
+                                  errorMessage!,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
                               IconButton(
-                                icon: const Icon(Icons.close),
+                                icon: const Icon(Icons.close_rounded, color: Colors.white70, size: 18),
                                 onPressed: () {
                                   setState(() {
                                     errorMessage = null;
@@ -544,20 +486,20 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                             final user = users[index];
                             final colors = [
                               {
-                                'accent': const Color(0xFF2563EB),
-                                'bg': const Color.fromARGB(150, 232, 241, 255),
+                                'accent': AppColors.primaryNeon,
+                                'bg': AppColors.primaryNeon.withOpacity(0.15),
                               },
                               {
-                                'accent': const Color(0xFF16A34A),
-                                'bg': const Color.fromARGB(150, 231, 247, 236),
+                                'accent': AppColors.secondaryNeon,
+                                'bg': AppColors.secondaryNeon.withOpacity(0.15),
                               },
                               {
-                                'accent': const Color(0xFFF59E0B),
-                                'bg': const Color.fromARGB(150, 255, 242, 217),
+                                'accent': AppColors.accentNeon,
+                                'bg': AppColors.accentNeon.withOpacity(0.15),
                               },
                               {
-                                'accent': const Color(0xFF0EA5E9),
-                                'bg': const Color.fromARGB(150, 229, 247, 255),
+                                'accent': Colors.cyanAccent,
+                                'bg': Colors.cyanAccent.withOpacity(0.15),
                               },
                             ];
 
@@ -588,24 +530,17 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                             final isCompact = constraints.maxWidth < 520;
                             return Container(
                               decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                  colors: [
-                                    Color.fromARGB(255, 248, 244, 255),
-                                    Color.fromARGB(255, 238, 226, 255),
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ),
+                                color: AppColors.bgMedium.withOpacity(0.8),
                                 borderRadius: BorderRadius.circular(18),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: const Color.fromARGB(255, 139, 37, 235).withOpacity(0.12),
+                                    color: Colors.black.withOpacity(0.2),
                                     blurRadius: 18,
                                     offset: const Offset(0, 10),
                                   )
                                 ],
                                 border: Border.all(
-                                  color: const Color.fromARGB(255, 139, 37, 235).withOpacity(0.2),
+                                  color: AppColors.glassBorder,
                                   width: 1,
                                 ),
                               ),
@@ -641,27 +576,23 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(12),
                                             gradient: currentPage > 0
-                                                ? const LinearGradient(
-                                                    colors: [
-                                                      Color.fromARGB(255, 153, 37, 235),
-                                                      Color.fromARGB(255, 139, 37, 235),
-                                                    ],
-                                                    begin: Alignment.topLeft,
-                                                    end: Alignment.bottomRight,
-                                                  )
+                                                ? AppColors.accentGradient
                                                 : null,
                                             color: currentPage > 0
                                                 ? null
-                                                : Colors.grey.shade300,
+                                                : Colors.white10,
                                             boxShadow: currentPage > 0
                                                 ? [
                                                     BoxShadow(
-                                                      color: const Color.fromARGB(255, 139, 37, 235).withOpacity(0.3),
+                                                      color: AppColors.primaryNeon.withOpacity(0.3),
                                                       blurRadius: 8,
                                                       offset: const Offset(0, 4),
                                                     )
                                                   ]
-                                                : null,
+                                                  : null,
+                                            border: Border.all(
+                                              color: currentPage > 0 ? Colors.transparent : AppColors.glassBorder,
+                                            ),
                                           ),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
@@ -671,7 +602,7 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                                                 Icons.arrow_back_ios_rounded,
                                                 color: currentPage > 0
                                                     ? Colors.white
-                                                    : Colors.grey.shade600,
+                                                    : Colors.white24,
                                                 size: 16,
                                               ),
                                               const SizedBox(width: 6),
@@ -681,7 +612,7 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                                                   fontWeight: FontWeight.w700,
                                                   color: currentPage > 0
                                                       ? Colors.white
-                                                      : Colors.grey.shade600,
+                                                      : Colors.white38,
                                                   fontSize: 13,
                                                 ),
                                               ),
@@ -700,7 +631,7 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                                           'Page ${currentPage + 1} / $totalPages',
                                           style: const TextStyle(
                                             fontWeight: FontWeight.w700,
-                                            color: Color.fromARGB(255, 100, 30, 150),
+                                            color: Colors.white,
                                             fontSize: 16,
                                           ),
                                         ),
@@ -710,7 +641,7 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                                           width: isCompact ? constraints.maxWidth : 160,
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(2),
-                                            color: Colors.grey.shade300,
+                                            color: Colors.white.withOpacity(0.1),
                                           ),
                                           child: FractionallySizedBox(
                                             widthFactor: totalPages > 0
@@ -720,14 +651,7 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                                             child: Container(
                                               decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(2),
-                                                gradient: const LinearGradient(
-                                                  colors: [
-                                                    Color.fromARGB(255, 186, 14, 233),
-                                                    Color.fromARGB(255, 153, 37, 235),
-                                                  ],
-                                                  begin: Alignment.centerLeft,
-                                                  end: Alignment.centerRight,
-                                                ),
+                                                gradient: AppColors.accentGradient,
                                               ),
                                             ),
                                           ),
@@ -757,27 +681,23 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(12),
                                             gradient: currentPage < totalPages - 1
-                                                ? const LinearGradient(
-                                                    colors: [
-                                                      Color.fromARGB(255, 139, 37, 235),
-                                                      Color.fromARGB(255, 153, 37, 235),
-                                                    ],
-                                                    begin: Alignment.topLeft,
-                                                    end: Alignment.bottomRight,
-                                                  )
+                                                ? AppColors.accentGradient
                                                 : null,
                                             color: currentPage < totalPages - 1
                                                 ? null
-                                                : Colors.grey.shade300,
+                                                : Colors.white10,
                                             boxShadow: currentPage < totalPages - 1
                                                 ? [
                                                     BoxShadow(
-                                                      color: const Color.fromARGB(255, 139, 37, 235).withOpacity(0.3),
+                                                      color: AppColors.primaryNeon.withOpacity(0.3),
                                                       blurRadius: 8,
                                                       offset: const Offset(0, 4),
                                                     )
                                                   ]
                                                 : null,
+                                            border: Border.all(
+                                              color: currentPage < totalPages - 1 ? Colors.transparent : AppColors.glassBorder,
+                                            ),
                                           ),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
@@ -789,7 +709,7 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                                                   fontWeight: FontWeight.w700,
                                                   color: currentPage < totalPages - 1
                                                       ? Colors.white
-                                                      : Colors.grey.shade600,
+                                                      : Colors.white38,
                                                   fontSize: 13,
                                                 ),
                                               ),
@@ -798,7 +718,7 @@ class _AdminUsersPageState extends State<AdminUsersPage> with TickerProviderStat
                                                 Icons.arrow_forward_ios_rounded,
                                                 color: currentPage < totalPages - 1
                                                     ? Colors.white
-                                                    : Colors.grey.shade600,
+                                                    : Colors.white38,
                                                 size: 16,
                                               ),
                                             ],

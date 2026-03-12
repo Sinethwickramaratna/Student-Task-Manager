@@ -90,7 +90,7 @@ class _BarChartWidgetState extends State<BarChartWidget> {
                 horizontalInterval: 5,
                 getDrawingHorizontalLine: (value) {
                   return FlLine(
-                    color: const Color(0xFFE2E8F0),
+                    color: Colors.white10,
                     strokeWidth: 1,
                   );
                 },
@@ -108,7 +108,7 @@ class _BarChartWidgetState extends State<BarChartWidget> {
                         value.toInt().toString(),
                         style: const TextStyle(
                           fontSize: 11,
-                          color: Color.fromARGB(255, 34, 0, 45),
+                          color: Colors.white70,
                         ),
                       );
                     },
@@ -128,7 +128,7 @@ class _BarChartWidgetState extends State<BarChartWidget> {
                             style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xFF334155),
+                              color: Colors.white70,
                             ),
                           ),
                         );

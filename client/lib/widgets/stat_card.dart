@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/app_colors.dart';
 
 class StatCard extends StatefulWidget {
   final String title;
@@ -26,8 +27,8 @@ class _StatCardState extends State<StatCard> {
 
   @override
   Widget build(BuildContext context) {
-    final base = widget.bgColor ?? const Color(0xFFF3F6FB);
-    final accent = widget.accentColor ?? const Color(0xFF2563EB);
+    final base = widget.bgColor ?? AppColors.bgMedium;
+    final accent = widget.accentColor ?? AppColors.primaryNeon;
     final scale = _isPressed
         ? 0.97
         : _isHovered
@@ -65,8 +66,8 @@ class _StatCardState extends State<StatCard> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  base,
-                  Color.lerp(base, Colors.white, 0.6)!,
+                  base.withOpacity(0.8),
+                  AppColors.bgLight.withOpacity(0.4),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -80,7 +81,7 @@ class _StatCardState extends State<StatCard> {
                 ),
               ],
               border: Border.all(
-                color: Colors.white.withOpacity(_isHovered ? 0.9 : 0.7),
+                color: _isHovered ? AppColors.primaryNeon.withOpacity(0.5) : AppColors.glassBorder,
                 width: 1,
               ),
             ),
@@ -108,15 +109,15 @@ class _StatCardState extends State<StatCard> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.6),
+                          color: Colors.white.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Text(
+                        child: Text(
                           'Live',
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFF475569),
+                            color: AppColors.primaryNeon.withOpacity(0.9),
                             letterSpacing: 0.2,
                           ),
                         ),
@@ -130,7 +131,7 @@ class _StatCardState extends State<StatCard> {
                       fontSize: 11,
                       fontWeight: FontWeight.w700,
                       letterSpacing: 1.1,
-                      color: Color(0xFF64748B),
+                      color: Colors.white,
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -139,7 +140,7 @@ class _StatCardState extends State<StatCard> {
                     style: const TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w800,
-                      color: Color(0xFF0F172A),
+                      color: Colors.white,
                       letterSpacing: -0.3,
                     ),
                   ),

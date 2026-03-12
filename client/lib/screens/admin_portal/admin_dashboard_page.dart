@@ -4,6 +4,7 @@ import '../../widgets/stat_card.dart';
 import '../../widgets/pie_chart_widget.dart';
 import '../../widgets/bar_chart_widget.dart';
 import '../../widgets/section_header.dart';
+import '../../core/app_colors.dart';
 
 class AdminDashboardPage extends StatefulWidget {
   const AdminDashboardPage({Key? key}) : super(key: key);
@@ -77,11 +78,8 @@ class _AdminDashboardPageState extends State<AdminDashboardPage>
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Color.fromARGB(255, 245, 226, 255), Color.fromARGB(255, 231, 171, 255)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: AppColors.bgDark,
+        gradient: AppColors.mainGradient,
       ),
       child: Stack(
         children: [
@@ -97,8 +95,8 @@ class _AdminDashboardPageState extends State<AdminDashboardPage>
               child: Container(
                 width: 200,
                 height: 200,
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(42, 87, 3, 190),
+                decoration: const BoxDecoration(
+                  color: AppColors.glassWhite,
                   shape: BoxShape.circle,
                 ),
               ),
@@ -117,7 +115,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage>
                 width: 220,
                 height: 220,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(128, 189, 131, 244),
+                  color: AppColors.primaryNeon.withOpacity(0.05),
                   shape: BoxShape.circle,
                 ),
               ),
@@ -213,50 +211,50 @@ class _AdminDashboardPageState extends State<AdminDashboardPage>
                       title: 'Total Users',
                       value: (stats['total_users'] ?? 0).toString(),
                       icon: Icons.groups_rounded,
-                      accent: const Color(0xFF2563EB),
-                      background: const Color.fromARGB(150, 232, 241, 255),
+                      accent: AppColors.primaryNeon,
+                      background: AppColors.bgMedium,
                     ),
                     _StatCardData(
                       title: 'Total Tasks',
                       value: (stats['total_tasks'] ?? 0).toString(),
                       icon: Icons.checklist_rounded,
-                      accent: const Color(0xFF16A34A),
-                      background: const Color.fromARGB(150, 231, 247, 236),
+                      accent: AppColors.secondaryNeon,
+                      background: AppColors.bgMedium,
                     ),
                     _StatCardData(
                       title: 'Completed Tasks',
                       value: (stats['completed_tasks'] ?? 0).toString(),
                       icon: Icons.task_alt_rounded,
-                      accent: const Color(0xFFF59E0B),
-                      background: const Color.fromARGB(150, 255, 242, 217),
+                      accent: AppColors.success,
+                      background: AppColors.bgMedium,
                     ),
                     _StatCardData(
                       title: 'Total Students',
                       value: (stats['total_students'] ?? 0).toString(),
                       icon: Icons.school_rounded,
-                      accent: const Color(0xFF0EA5E9),
-                      background: const Color.fromARGB(150, 229, 247, 255),
+                      accent: AppColors.accentNeon,
+                      background: AppColors.bgMedium,
                     ),
                     _StatCardData(
                       title: 'Total Teachers',
                       value: (stats['total_teachers'] ?? 0).toString(),
                       icon: Icons.person_pin_rounded,
-                      accent: const Color(0xFF8B5CF6),
-                      background: const Color.fromARGB(150, 241, 233, 255),
+                      accent: AppColors.primaryNeon,
+                      background: AppColors.bgMedium,
                     ),
                     _StatCardData(
                       title: 'Total Classes',
                       value: (stats['total_classes'] ?? 0).toString(),
                       icon: Icons.dashboard_customize_rounded,
-                      accent: const Color(0xFFEC4899),
-                      background: const Color.fromARGB(150, 255, 230, 240),
+                      accent: AppColors.secondaryNeon,
+                      background: AppColors.bgMedium,
                     ),
                     _StatCardData(
                       title: 'Active Users',
                       value: (stats['active_users'] ?? 0).toString(),
                       icon: Icons.wifi_tethering_rounded,
-                      accent: const Color(0xFF0F766E),
-                      background: const Color.fromARGB(150, 227, 243, 241),
+                      accent: AppColors.success,
+                      background: AppColors.bgMedium,
                     ),
                   ];
 
@@ -403,14 +401,14 @@ class _DashboardPanel extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(180, 255, 255, 255),
+        color: AppColors.bgMedium.withOpacity(0.8),
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color.fromARGB(255, 255, 255, 255), width: 1),
+        border: Border.all(color: AppColors.glassBorder, width: 1),
         boxShadow: [
-          BoxShadow(
-            color: const Color.fromARGB(29, 0, 0, 0),
+          const BoxShadow(
+            color: Colors.black26,
             blurRadius: 15,
-            offset: const Offset(5, 8),
+            offset: Offset(5, 8),
           ),
         ],
       ),
@@ -422,7 +420,7 @@ class _DashboardPanel extends StatelessWidget {
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF0F172A),
+              color: Colors.white,
             ),
           ),
           const SizedBox(height: 12),

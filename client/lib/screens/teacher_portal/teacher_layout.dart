@@ -4,6 +4,7 @@ import '../../widgets/top_bar.dart';
 import '../../services/auth_service.dart';
 import '../login_page.dart';
 import 'teacher_dashboard_page.dart';
+import '../../core/app_colors.dart';
 
 class TeacherLayout extends StatefulWidget {
   const TeacherLayout({super.key});
@@ -123,16 +124,17 @@ class _PlaceholderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Color(0xFFF7F2EA), Color(0xFFE7F1F6)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: AppColors.bgDark,
+        gradient: AppColors.mainGradient,
       ),
       child: Center(
         child: Text(
           title,
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
         ),
       ),
     );

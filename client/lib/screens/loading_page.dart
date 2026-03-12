@@ -7,6 +7,7 @@ import 'login_page.dart';
 import 'admin_portal/admin_layout.dart';
 import 'teacher_portal/teacher_layout.dart';
 import 'student_portal/student_layout.dart';
+import '../core/app_colors.dart';
 
 class LoadingPage extends StatefulWidget{
   final bool isFirstTime;
@@ -106,16 +107,12 @@ class _LoadingPageState extends State<LoadingPage> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: AppColors.bgDark,
       body: Container(
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color.fromARGB(255, 20, 0, 38), Color.fromARGB(255, 100, 0, 123)],
-            begin: Alignment(0,0),
-            end: Alignment(1.0, 2),
-          ),
+          gradient: AppColors.mainGradient,
         ),
         child: Center(
           child: Column(
@@ -138,7 +135,7 @@ class _LoadingPageState extends State<LoadingPage> with SingleTickerProviderStat
                   values: [
                     ValueDelegate.color(
                       const ['**'],
-                      value: const Color.fromARGB(255, 239, 145, 255)
+                      value: AppColors.primaryNeon,
                     ),
                   ],
                 ),

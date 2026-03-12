@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/app_colors.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title;
@@ -17,8 +18,15 @@ class SectionHeader extends StatelessWidget {
           width: 4,
           height: 36,
           decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 48, 0, 60),
+            color: AppColors.primaryNeon,
             borderRadius: BorderRadius.circular(4),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.primaryNeon.withOpacity(0.5),
+                blurRadius: 8,
+                offset: const Offset(0, 0),
+              ),
+            ],
           ),
         ),
         const SizedBox(width: 12),
@@ -30,7 +38,7 @@ class SectionHeader extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w800,
-                color: Color.fromARGB(255, 31, 17, 39),
+                color: Colors.white,
                 letterSpacing: -0.3,
               ),
             ),
@@ -40,7 +48,7 @@ class SectionHeader extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
-                color: Color.fromARGB(255, 68, 0, 101),
+                color: Colors.white70,
               ),
             ),
           ],

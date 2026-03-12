@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/app_colors.dart';
 
 class TeacherDashboardPage extends StatelessWidget{
   const TeacherDashboardPage({super.key});
@@ -7,11 +8,8 @@ class TeacherDashboardPage extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Color(0xFFF7F2EA), Color(0xFFE7F1F6)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: AppColors.bgDark,
+        gradient: AppColors.mainGradient,
       ),
       child: const Center(
         child: Text('Teacher Dashboard'),

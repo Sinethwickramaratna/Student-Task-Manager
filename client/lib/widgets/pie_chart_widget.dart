@@ -151,9 +151,9 @@ class _LegendItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: const Color(0xFFF8FAFC),
+        color: Colors.white.withOpacity(0.05),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: Colors.white.withOpacity(0.1)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -164,6 +164,13 @@ class _LegendItem extends StatelessWidget {
             decoration: BoxDecoration(
               color: color,
               shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: color.withOpacity(0.4),
+                  blurRadius: 4,
+                  offset: const Offset(0, 0),
+                ),
+              ],
             ),
           ),
           const SizedBox(width: 8),
@@ -172,7 +179,7 @@ class _LegendItem extends StatelessWidget {
             style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,
-              color: Color(0xFF334155),
+              color: Colors.white70,
             ),
           ),
           const SizedBox(width: 8),
@@ -181,7 +188,7 @@ class _LegendItem extends StatelessWidget {
             style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF0F172A),
+              color: Colors.white,
             ),
           ),
         ],

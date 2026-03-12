@@ -3,6 +3,7 @@ import 'package:TaskHive/services/auth_service.dart';
 import 'package:TaskHive/screens/admin_portal/admin_layout.dart';
 import 'package:TaskHive/screens/teacher_portal/teacher_layout.dart';
 import 'package:TaskHive/screens/student_portal/student_layout.dart';
+import '../../core/app_colors.dart';
 
 class LoginPage extends StatefulWidget{
   const LoginPage({super.key});
@@ -73,11 +74,7 @@ class _LoginPageState extends State<LoginPage>{
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color.fromARGB(255, 20, 0, 38), Color.fromARGB(255,77,0,94)],
-            begin: Alignment(0,0),
-            end: Alignment(1.0, 2),
-          ),
+          gradient: AppColors.mainGradient,
         ),
         child: Center(
           child: SingleChildScrollView(
@@ -92,55 +89,38 @@ class _LoginPageState extends State<LoginPage>{
 
                   TextFormField(
                     controller: _emailController,
-                    style: const TextStyle(color: Colors.white),
                     decoration: const InputDecoration(
-                      labelText:'Email or Username',
-                      labelStyle: TextStyle(color: Colors.white,),
-                      prefixIcon: Icon(Icons.email, color: Colors.white),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
+                      labelText: 'Email or Username',
+                      prefixIcon: Icon(Icons.email),
                     ),
-                    validator: (value){
-                      if(value == null || value.isEmpty){
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
                         return 'Please enter your email';
                       }
                       return null;
-                    }
+                    },
                   ),
                   const SizedBox(height: 20),
-
                   TextFormField(
                     controller: _passwordController,
-                    style: const TextStyle(color: Colors.white),
                     obscureText: _obscureText,
                     decoration: InputDecoration(
-                      labelText:'Password',
-                      labelStyle: TextStyle(color: Colors.white),
-                      prefixIcon: const Icon(Icons.lock, color: Colors.white),
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
+                      labelText: 'Password',
+                      prefixIcon: const Icon(Icons.lock),
                       suffixIcon: IconButton(
-                        icon: Icon(_obscureText? Icons.visibility: Icons.visibility_off, color: Colors.white),
-                        onPressed: (){
-                          setState((){
+                        icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
                             _obscureText = !_obscureText;
                           });
                         },
                       ),
                     ),
-                    validator: (value){
-                        if (value == null || value.isEmpty){
-                          return 'Please enter your password.';
-                        }
-                        return null;
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your password.';
+                      }
+                      return null;
                     },
                   ),
                   const SizedBox(height: 30),
@@ -165,9 +145,9 @@ class _LoginPageState extends State<LoginPage>{
                         child: const Text(
                           'Sign Up',
                           style: TextStyle(
-                            color: Color.fromARGB(255, 213, 130, 255),
-                            fontWeight: FontWeight.bold
-                          )
+                            color: AppColors.accentNeon,
+                            fontWeight: FontWeight.bold,
+                          ),
                         )
                       ),
                     ],

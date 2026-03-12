@@ -21,7 +21,7 @@ public class AdminTeacherController {
   }
 
   @GetMapping
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasRole('Admin')")
   public Map<String, Object> getTeachers(
       @RequestParam(defaultValue = "0") int page,
       @RequestParam(defaultValue = "10") int size,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/app_colors.dart';
 
 class AnimatedSidebar extends StatelessWidget {
   final bool isOpen;
@@ -25,7 +26,7 @@ class AnimatedSidebar extends StatelessWidget {
     return SizedBox(
       width: 220,
       child: Container(
-        color: const Color.fromARGB(255, 42, 0, 58),
+        color: AppColors.bgDark,
         child: Column(
           children: [
             const SizedBox(height: 8),
@@ -57,8 +58,9 @@ class AnimatedSidebar extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         decoration: BoxDecoration(
-          color: isSelected ? const Color.fromARGB(255, 198, 33, 243) : Colors.transparent,
+          color: isSelected ? AppColors.primaryNeon.withOpacity(0.2) : Colors.transparent,
           borderRadius: BorderRadius.circular(8),
+          border: isSelected ? Border.all(color: AppColors.primaryNeon.withOpacity(0.5)) : null,
         ),
         child: Row(
           children: [
